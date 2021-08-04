@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>House Price Predictor</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<h1>HOUSE PRICE PREDICTIOR</h1>
+<body>
+ <div class="login">
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="number" name="bedrooms" placeholder="Bedrooms" required="required" />
+        <input type="number" name="bathrooms" placeholder="Bathrooms" required="required" />
+		<input type="number" name="sqft_living" placeholder="House square feet" required="required" />
+        <input type="number" name="sqft_lot" placeholder="Lot square feet" required="required" />
+        <input type="number" name="floors" placeholder="Floors" required="required" />
+        <input type="number" name="waterfront" placeholder="Index for Waterfront" required="required" />
+        <input type="number" name="view" placeholder="Index for View" required="required" />
+        <input type="number" name="condition" placeholder="House condition" required="required" />
+        <input type="number" name="grade" placeholder="House grade" required="required" />
+        <input type="number" name="sqft_above" placeholder="Square feet above" required="required" />
+        <input type="number" name="sqft_basement" placeholder="Square feet basement" required="required" />
+        <input type="number" name="yr_built" placeholder="Year built" required="required" />
+        <input type="number" name="yr_renovated" placeholder="Year renovated" required="required" />
+        <input type="number" name="zipcode" placeholder="Zipcode" required="required" />
+        <input type="number" name="lat" placeholder="latitude" required="required" />
+        <input type="number" name="slong" placeholder="Longtitude" required="required"  />
+        <input type="number" name="sqft_living15" placeholder="House square feet of nearby houses" required="required" />
+        <input type="number" name="sqft_lot15" placeholder="lot square feet of nearby houses" required="required"  />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
