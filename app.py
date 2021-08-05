@@ -1,7 +1,7 @@
 from os import defpath
 from flask import Flask, render_template,request,jsonify
 import pickle
-
+import xgboost as xgb
 from flask.json import load
 import numpy as np
 
