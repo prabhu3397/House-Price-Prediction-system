@@ -1,5 +1,5 @@
 from os import defpath
-from flask import Flask, render_template,request,jsonify, redirect, url_for
+from flask import Flask, render_template,request,jsonify
 import pickle
 import xgboost as xgb
 from flask.json import load
@@ -22,7 +22,7 @@ def predict():
 
     output =prediction
     
-   return render_template('index.html', prediction_text='House price is $ {}'.format(output))
+    return render_template('index.html', prediction_text='House price is $ {}'.format(output))
 
 
 
