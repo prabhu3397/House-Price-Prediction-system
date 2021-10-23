@@ -21,8 +21,8 @@ def predict():
     prediction = model.predict(final_features)
 
     output =prediction
-
-    return render_template('index.html', prediction_text='House price is $ {}'.format(output))
+    form_data= request.form
+    return render_template('index.html', prediction_text='House price is $ {}'.format(output),form_data = form_data)
 
 
 
