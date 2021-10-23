@@ -1,5 +1,5 @@
 from os import defpath
-from flask import Flask, render_template,request,jsonify
+from flask import Flask, render_template,request,jsonify, redirect, url_for
 import pickle
 import xgboost as xgb
 from flask.json import load
@@ -22,13 +22,19 @@ def predict():
 
     output =prediction
     
-   if request.method == "POST":
-     user = request.form["bedrooms","bathrooms","sqft_living","sqft_lot","floors"]
-    
-    	
-    return render_template('index.html', prediction_text='House price is $ {}'.format(output),form_data = user)
+   return render_template('index.html', prediction_text='House price is $ {}'.format(output))
 
+@app.route('/predict',methods=["POST", "GET"])
+def predict():
+    if request.method == "POST":
+	user = request.form["bedrooms"]
+	return redirect(url_for("user", usr=user))
+    else:
+	return render_template("index.html")
 
+@app.route("/<usr>")
+def user(usr):
+    return f"<h1>{usr}</h1>"
 
 if __name__ == "__main__":
     app.run(debug=True)
