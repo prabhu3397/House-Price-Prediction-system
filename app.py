@@ -24,17 +24,7 @@ def predict():
     
    return render_template('index.html', prediction_text='House price is $ {}'.format(output))
 
-@app.route('/predict',methods=["POST", "GET"])
-def predict():
-    if request.method == "POST":
-	user = request.form["bedrooms"]
-	return redirect(url_for("user", usr=user))
-    else:
-	return render_template("index.html")
 
-@app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>"
 
 if __name__ == "__main__":
     app.run(debug=True)
