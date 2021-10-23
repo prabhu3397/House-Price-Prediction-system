@@ -21,15 +21,14 @@ def predict():
     prediction = model.predict(final_features)
 
     output =prediction
-    if request.method == "POST":
-	user = request.form["bedrooms","bathrooms","sqft_living","sqft_lot","floors"]
-	return redirect(url_for("user", usr=user))
-    else:
-	return render_template('index.html', prediction_text='House price is $ {}'.format(output))
+    
+     request.method == "POST":
+     user = request.form["bedrooms","bathrooms","sqft_living","sqft_lot","floors"]
+    
+    	
+    return render_template('index.html', prediction_text='House price is $ {}'.format(output),form_data = user)
 
- @app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>"
+
 
 if __name__ == "__main__":
     app.run(debug=True)
