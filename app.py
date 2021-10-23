@@ -13,7 +13,7 @@ model = pickle.load(open('best_model.pkl', 'rb'))
 def home():
     return render_template('index.html')
 
-@app.route('/predict',methods=['POST'])
+@app.route('/predict',methods=['POST','GET'])
 def predict():
     
     int_features = [float(x) for x in request.form.values()]
@@ -21,10 +21,15 @@ def predict():
     prediction = model.predict(final_features)
 
     output =prediction
-    form_data= request.form
-    return render_template('index.html', prediction_text='House price is $ {}'.format(output),form_data = form_data)
+    if request.method == "POST":
+	user = request.form["bedrooms","bathrooms","sqft_living","sqft_lot","floors"]
+	return redirect(url_for("user", usr=user))
+    else:
+	return render_template('index.html', prediction_text='House price is $ {}'.format(output))
 
-
+ @app.route("/<usr>")
+def user(usr):
+    return f"<h1>{usr}</h1>"
 
 if __name__ == "__main__":
     app.run(debug=True)
